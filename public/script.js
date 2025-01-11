@@ -6,7 +6,8 @@ const input = document.querySelector("#input");
 
 
 let name = prompt("Your name");
-const infinity = Math.pow(10, 1000);
+
+const infinity = Math.pow(10, 1000); // doesn't seem to be referenced
 
 let newDiv = document.createElement("div");
 newDiv.classList.add("new-div");
@@ -84,17 +85,14 @@ socket.on('user-joined', data => {
 
 
 
-
-
-
-
-
-
 // on submitting the form (send msg)
 form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-
+    // Check if the input value is empty
+    if (input.value.trim() === "") {
+        return;
+    }
 
     // sending event to app.js on submitting the form (send msg)
     socket.emit('msg-sent', input.value);
